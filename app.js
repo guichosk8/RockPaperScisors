@@ -21,28 +21,39 @@ function convertToWord(letter){
 }
 
 function win(user, computer){
+    const smallUserWord = "user".fontsize(3).sup();
+    const smallComputerWord = "computer".fontsize(3).sup();
+    const userChoice_div = document.getElementById(user);
     userScore++;
     userScore_span.innerHTML = userScore;
     computerScore_span.innerHTML = computerScore;
-    const smallUserWord = "user".fontsize(3).sup();
-    const smallComputerWord = "computer".fontsize(3).sup();
     result_p.innerHTML = `${convertToWord(user)}${smallUserWord} beats ${convertToWord(computer)}${smallComputerWord}. You win! 🔥`;
-    
+    userChoice_div.classList.add('green-glow');
+    //ECMAScript 6 mode for declaring inner function inside setTimeout
+    //work just for one line
+    setTimeout(() => userChoice_div.classList.remove('green-glow'),300);
 }
 
 function lose(user, computer){
+    const smallUserWord = "user".fontsize(3).sup();
+    const smallComputerWord = "computer".fontsize(3).sup();
+    const userChoice_div = document.getElementById(user);
     computerScore++;
     userScore_span.innerHTML = userScore;
     computerScore_span.innerHTML = computerScore;
-    const smallUserWord = "user".fontsize(3).sup();
-    const smallComputerWord = "computer".fontsize(3).sup();
     result_p.innerHTML = `${convertToWord(user)}${smallUserWord} loses to ${convertToWord(computer)}${smallComputerWord}. You lost! 💩`;
+    userChoice_div.classList.add('red-glow');
+    //ECMAScript 5 mode for declaring inner function inside setTimeout
+    setTimeout(function(){userChoice_div.classList.remove('red-glow')},300);
 }
 
 function draw(user, computer){
     const smallUserWord = "user".fontsize(3).sup();
     const smallComputerWord = "computer".fontsize(3).sup();
+    const userChoice_div = document.getElementById(user);
     result_p.innerHTML = `${convertToWord(user)}${smallUserWord} equals ${convertToWord(computer)}${smallComputerWord}. It's a draw! 🤝`;
+    userChoice_div.classList.add('gray-glow');
+    setTimeout(function(){userChoice_div.classList.remove('gray-glow')},300);
 }
 
 function game(userChoice){
